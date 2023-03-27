@@ -49,17 +49,17 @@ function App() {
       setWinMessage(`${itemArray[1]} is the winner`);
     }
     //3rd column
-    else if(itemArray[2] === itemArray[4] && itemArray[2] === itemArray[7] && itemArray[2]!== "empty")
+    else if(itemArray[2] === itemArray[5] && itemArray[2] === itemArray[8] && itemArray[2]!== "empty")
     {
       setWinMessage(`${itemArray[2]} is the winner`);
     }
     //1st diagonal
-    else if(itemArray[0] === itemArray[5] && itemArray[0] === itemArray[9] && itemArray[0]!== "empty")
+    else if(itemArray[0] === itemArray[4] && itemArray[0] === itemArray[8] && itemArray[0]!== "empty")
     {
       setWinMessage(`${itemArray[0]} is the winner`);
     }
     //2nd diagonal
-    else if(itemArray[2] === itemArray[5] && itemArray[2] === itemArray[6] && itemArray[2]!== "empty")
+    else if(itemArray[2] === itemArray[4] && itemArray[2] === itemArray[6] && itemArray[2]!== "empty")
     {
       setWinMessage(`${itemArray[2]} is the winner`);
     }
@@ -76,10 +76,13 @@ function App() {
     if(itemArray[itemNumber] === "empty"){
       itemArray[itemNumber] = isCross ? "cross" : "circle";
       setIsCross(!isCross);
-
+      console.log(itemArray[itemNumber]);
     }
+    // else if(itemArray.map( (item,index) => itemArray[index] !== "empty") ? true : false){
+    //   return toast("All the elements are filled and no one is won , Please restart the game", {type: "error"});
+    // }
     else{
-      return toast("Already filler" , { type: "error"});
+      return toast("Already filled" , { type: "error"});
     }
 
     checkIsWinner();
@@ -96,15 +99,15 @@ function App() {
               <h1 className='text-success text-uppercase text-center'>
                 {winMessage}
               </h1>
-              <Button color='success' block onClick={reload}>
-                  Reload the game
-              </Button>
             </div>
           ) : (
             <h1 className='text-cente text-warning'>
               {isCross ? "cross" : "circle"} turns 
             </h1>
           ) }
+          <Button className='mb-2' color='success' block onClick={reload}>
+                  Reload the game
+          </Button>
           <div className='grid'>
             {itemArray.map( (item,index) => ( 
               <Card color="warning" onClick = { () => changeItem(index)}> 
